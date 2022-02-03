@@ -1,28 +1,21 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql
-spec:
-  ports:
-  - port: 3306
-  selector:
-    app: mysql
-  clusterIP: None
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: db
+  namespace: mysql
+  resourceVersion: "10920"
+  selfLink: /apis/apps/v1/namespaces/mysql/deployments/db
+  uid: d44b629a-6508-483d-99fc-33b07230c513
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: db
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql
+        app: db
     spec:
       containers:
       - image: mysql:5.6
